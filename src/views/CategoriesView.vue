@@ -1,0 +1,86 @@
+<template>
+  <!-- categories laptops...-->
+  <div class="producesall" id="pageMain">
+    <template v-for="prod in pagelist" :key="prod.id">
+      <div class="prod-container" :data-id="prod.id">
+        <div class="prod-img">
+          <a href="javascript:;">
+            <img :src="prod.url" alt="" />
+          </a>
+        </div>
+        <div class="prod-info">
+          <div class="info-p">
+            <a href="" :title="prod.name">{{ prod.name }}</a>
+          </div>
+          <div class="info-price">
+            <b>$</b>
+            <p>{{ prod.price }}</p>
+          </div>
+        </div>
+      </div>
+    </template>
+  </div>
+  <div id="pageBox">
+    <span id="prev" @click="change(-1)">Previous</span>
+    <div id="pageNav">
+      <a
+        href="javascript:;"
+        v-for="(c, index) in totalPage"
+        :key="index"
+        :class="current_type === index ? 'active' : ''"
+        @click="changepage(c)"
+      >
+        {{ c }}
+      </a>
+    </div>
+    <!-- <span id="next" v-show="nowPage < totalPage" @click="change(1)"> 下一頁 </span> -->
+    <span id="next" @click="change(1)">Next</span>
+  </div>
+  <!-- categories End-->
+</template>
+<script>
+export default {
+  props: {
+    cargo: { type: Object },
+  },
+  data: function () {
+    return {
+      count: 0,
+      perPage: 12,
+      nowPage: 1,
+      current_type: 0,
+    };
+  },
+  computed: {
+    pagelist() {
+      let start = (this.nowPage - 1) * this.perPage;
+      return this.cargo.slice(start, start + this.perPage);
+    },
+    totalPage() {
+      return Math.ceil(this.cargo.length / this.perPage);
+    },
+  },
+  methods: {
+    change(direct) {
+      this.current_type = this.current_type + direct;
+      let page = this.nowPage + direct;
+      if (page < 1) {
+        this.current_type = 0;
+        alert("Already the first page!!");
+      } else if (page > this.totalPage) {
+        this.current_type = this.totalPage - 1;
+        alert("Already the last page!!");
+      }
+      return (this.nowPage =
+        page < 1 ? 1 : page > this.totalPage ? this.totalPage : page);
+    },
+    changepage(direct) {
+      this.current_type = direct - 1;
+      return (this.nowPage = direct);
+    },
+  },
+};
+</script>
+<style lang="scss">
+@import url("../assets/css/categories.css");
+</style>
