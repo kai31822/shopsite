@@ -12,6 +12,37 @@
     <hr />
     {{ days }}<br />{{ hours }}<br />{{ minutes }}<br />{{ seconds }}
   </div>
+  <hr />
+  <div>
+    <div id="app">
+      <div class="slides">
+        <transition-group tag="div" :name="transitionName" class="img-boxex">
+          <div
+            v-for="(img, idx) of imgs"
+            :key="idx"
+            class="img-box"
+            v-show="idx === showImg"
+          >
+            <img :src="img.src" />
+            <span>{{ idx + 1 }}</span>
+          </div>
+        </transition-group>
+        <div class="btn-group">
+          <button class="prev" @click="setShowImg(-1)">◀</button>
+          <button
+            class="page"
+            @click="setShowImgTo(num - 1)"
+            v-for="num in imgs.length"
+            :key="num - 1"
+          >
+            {{ num }}
+          </button>
+          <button class="next" @click="setShowImg(1)">▶</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr />
   <router-link to="/"><button>home</button></router-link>
 </template>
 <script>
@@ -51,7 +82,46 @@ export default {
         { book: "w", num: 2 },
       ],
       timer: "Sep 30, 2022 12:30:00",
+      //carousel
+      transitionName: "right-in",
+      showImg: 0,
+      imgsCount: 8,
+      imgs: [
+        { src: "https://picsum.photos/600/400?random=1" },
+        { src: "https://picsum.photos/600/400?random=2" },
+        { src: "https://picsum.photos/600/400?random=3" },
+        { src: "https://picsum.photos/600/400?random=4" },
+        { src: "https://picsum.photos/600/400?random=5" },
+      ],
+      autoPlayInterval: 2000,
+      //carousel
     };
+  },
+  mounted() {
+    setInterval(this.setShowImg, this.autoPlayInterval);
+  },
+  methods: {
+    setShowImg(changeIdx = 1) {
+      switch (true) {
+        case changeIdx === 1 && this.showImg === this.imgs.length - 1:
+          this.showImg = 0;
+          break;
+        case changeIdx === -1 && this.showImg === 0:
+          this.showImg = this.imgs.length - 1;
+          break;
+        default:
+          this.showImg = this.showImg + changeIdx;
+          break;
+      }
+    },
+    setShowImgTo(changeIdxTo) {
+      this.showImg = changeIdxTo;
+    },
+  },
+  watch: {
+    showImg(nIdx, oIdx) {
+      this.transitionName = nIdx > oIdx ? "right-in" : "left-in";
+    },
   },
   //  created() {
   //     this.EventTime();
@@ -99,3 +169,44 @@ export default {
   },*/
 };
 </script>
+<style lang="scss">
+.img-boxex {
+  position: relative;
+  overflow: hidden;
+  width: 600px;
+  height: 400px;
+}
+.img-box {
+  position: absolute;
+}
+
+.right-in-enter {
+  left: 100%;
+}
+.right-in-enter-active,
+.right-in-leave-active {
+  transition: left 0.5s;
+}
+.right-in-enter-to,
+.right-in-leave {
+  left: 0%;
+}
+.right-in-leave-to {
+  left: -100%;
+}
+
+.left-in-enter {
+  right: 100%;
+}
+.left-in-enter-active,
+.left-in-leave-active {
+  transition: right 0.5s;
+}
+.left-in-enter-to,
+.left-in-leave {
+  right: 0%;
+}
+.left-in-leave-to {
+  right: -100%;
+}
+</style>

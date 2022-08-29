@@ -71,42 +71,48 @@
               <h3>New PRODUCTS</h3>
             </div>
             <ul class="newproduct-item sm">
-              <li><a href="#">Laptops</a></li>
-              <li><a href="#">Smartphones</a></li>
-              <li><a href="#">Tablet</a></li>
-              <li><a href="#">Accessories</a></li>
+              <!-- newproduct nav -->
+              <li v-for="prodnav in newproductnav" :key="prodnav.id">
+                <a
+                  href="#"
+                  :class="
+                    current_type === prodnav.id ? 'newprooduct_active' : ''
+                  "
+                  @click="checkoutType(prodnav.id)"
+                  >{{ prodnav.name }}</a
+                >
+              </li>
             </ul>
           </div>
         </div>
         <div class="newproducts-bot">
           <div class="newproducts-bot-item">
             <div class="newproducts-bot-item-left">
-              <div class="carousel">
-                <div class="container">
-                  <a href=""
-                    ><img
-                      src="https://m.media-amazon.com/images/I/71-qOgGl43L._AC_UL480_FMwebp_QL65_.jpg"
-                      alt=""
-                  /></a>
-                  <a href=""
-                    ><img
-                      src="https://m.media-amazon.com/images/I/71IKEY3NBhL._AC_UL480_FMwebp_QL65_.jpg"
-                      alt=""
-                  /></a>
-                  <a href=""
-                    ><img
-                      src="https://m.media-amazon.com/images/I/71PkoapDXRL._AC_UY327_FMwebp_QL65_.jpg"
-                      alt=""
-                  /></a>
+              <div>
+                <div
+                  v-for="(img, idx) of imgs"
+                  :key="idx"
+                  v-show="idx === showImg"
+                >
+                  <a href="#"><img :src="img.src" alt="" /></a>
+                  <!-- <span>{{ idx + 1 }}</span> -->
                 </div>
 
                 <div class="botton">
-                  <button class="indicator" onclick="setindex(0)"></button>
-                  <button class="indicator" onclick="setindex(1)"></button>
-                  <button class="indicator" onclick="setindex(2)"></button>
+                  <button class="prev" @click="setShowImg(-1)">◀</button>
+                  <button
+                    class="indicator"
+                    @click="setShowImgTo(num - 1)"
+                    v-for="num in imgs.length"
+                    :key="num - 1"
+                  >
+                    {{ num }}
+                  </button>
+                  <button class="next" @click="setShowImg(1)">▶</button>
                 </div>
               </div>
             </div>
+            <!-- right -->
             <div class="newproducts-bot-item-right">
               <template v-for="cargo of productslaptop" :key="cargo.id">
                 <!-- 6src -->
@@ -174,7 +180,9 @@
 </template>
 <script>
 import { ref } from "@vue/reactivity";
+
 export default {
+  components: {},
   setup() {
     //test簡易倒數計時器,用vue  ref:可以接受任何型態的資料，但是不會對物件或陣列內部的屬性變動做監聽。
     const days = ref(0);
@@ -248,7 +256,76 @@ export default {
           url: "https://m.media-amazon.com/images/I/81Ivn5DIxhL._AC_UY327_QL65_.jpg",
         },
       ],
+      newproductnav: [
+        {
+          id: 1,
+          name: "Laptops",
+        },
+        {
+          id: 2,
+          name: "Smartphones",
+        },
+        {
+          id: 3,
+          name: "Tablet",
+        },
+        {
+          id: 4,
+          name: "Accessories",
+        },
+      ],
+      current_type: 1,
+      showprod: 0,
+      //carousel
+      transitionName: "right-in",
+      showImg: 0,
+      imgsCount: 8,
+      imgs: [
+        {
+          src: "https://m.media-amazon.com/images/I/71-qOgGl43L._AC_UL480_FMwebp_QL65_.jpg",
+        },
+        {
+          src: "https://m.media-amazon.com/images/I/71IKEY3NBhL._AC_UL480_FMwebp_QL65_.jpg",
+        },
+        {
+          src: "https://m.media-amazon.com/images/I/71PkoapDXRL._AC_UY327_FMwebp_QL65_.jpg",
+        },
+      ],
+      autoPlayInterval: 3500,
+      //carousel
     };
+  },
+  mounted() {
+    //carousel
+    setInterval(this.setShowImg, this.autoPlayInterval);
+  },
+  methods: {
+    checkoutType(index) {
+      this.current_type = index;
+    },
+    //carousel
+    setShowImg(changeIdx = 1) {
+      switch (true) {
+        case changeIdx === 1 && this.showImg === this.imgs.length - 1:
+          this.showImg = 0;
+          break;
+        case changeIdx === -1 && this.showImg === 0:
+          this.showImg = this.imgs.length - 1;
+          break;
+        default:
+          this.showImg = this.showImg + changeIdx;
+          break;
+      }
+    },
+    setShowImgTo(changeIdxTo) {
+      this.showImg = changeIdxTo;
+    },
+    // watch: {
+    //   //carousel
+    //   showImg(nIdx, oIdx) {
+    //     this.transitionName = nIdx > oIdx ? "right-in" : "left-in";
+    //   },
+    // },
   },
 };
 </script>

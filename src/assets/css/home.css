@@ -282,6 +282,11 @@ a {
 .newproducts-bot-item {
     display: flex;
 }
+.newprooduct_active{
+    color: #d10024;
+    background-color: transparent;
+    border-bottom: #d10024 3px solid;
+}
 .newproducts-bot-item .newproducts-bot-item-left {
     width: 33.3333%;
     height: 400px;

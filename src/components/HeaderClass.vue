@@ -101,7 +101,7 @@ export default {
     return {
       nav: [
         { id: 1, name: "Home", path: "/" },
-        { id: 2, name: "Categories", path: "prodall" },
+        { id: 2, name: "All", path: "prodall" },
         { id: 3, name: "Laptops", path: "laptops" },
         { id: 4, name: "Smartphones", path: "smartphones" },
         { id: 5, name: "Tablet", path: "tablets" },
