@@ -301,7 +301,7 @@ a {
 }
 .newproducts-bot-item .newproducts-bot-item-left .carousel .container {
     height: 100%;
-    width: 300%;
+    width: 100%;
     position: relative;
     left: 0px;
     display: flex;
@@ -324,7 +324,7 @@ a {
 }
 .newproducts-bot-item .newproducts-bot-item-left .carousel .botton {
     position: absolute;
-    bottom: 20px;
+    bottom: 0px;
     left: 0;
     right: 0;
     margin: 0 auto;

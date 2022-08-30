@@ -8,7 +8,7 @@
           <div class="collection-wrap">
             <div class="collection-item">
               <div class="collection-item-img">
-                <a href="./pages/laptop.html"
+                <a href="#"
                   ><img
                     src="https://images.unsplash.com/photo-1589652717521-10c0d092dea9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjZ8fGxhcHRvcHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"
                     alt=""
@@ -26,7 +26,7 @@
           <div class="collection-wrap">
             <div class="collection-item">
               <div class="collection-item-img">
-                <a href="./pages/Smartphone.html"
+                <a href="#"
                   ><img
                     src="https://images.unsplash.com/photo-1583573636246-18cb2246697f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8c21hcnRwaG9uZXN8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60"
                     alt=""
@@ -34,7 +34,7 @@
               </div>
               <div class="collection-item-body">
                 <h3>Smartphones<br />Collection</h3>
-                <a href=""
+                <a href="#"
                   >SHOP NOW<i class="fa-solid fa-circle-arrow-right"></i
                 ></a>
               </div>
@@ -44,7 +44,7 @@
           <div class="collection-wrap">
             <div class="collection-item">
               <div class="collection-item-img">
-                <a href="./pages/Accessories.html"
+                <a href="#"
                   ><img
                     src="https://images.unsplash.com/photo-1599108859517-0d6aed78ac87?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8YWNjZXNzb3JpZXMlMjBlbGV0aXJpY3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"
                     alt=""
@@ -74,11 +74,11 @@
               <!-- newproduct nav -->
               <li v-for="prodnav in newproductnav" :key="prodnav.id">
                 <a
-                  href="#"
+                  href="javascript:;"
                   :class="
                     current_type === prodnav.id ? 'newprooduct_active' : ''
                   "
-                  @click="checkoutType(prodnav.id)"
+                  @click="checkoutType(prodnav.id, prodnav.name)"
                   >{{ prodnav.name }}</a
                 >
               </li>
@@ -88,11 +88,12 @@
         <div class="newproducts-bot">
           <div class="newproducts-bot-item">
             <div class="newproducts-bot-item-left">
-              <div>
+              <div class="carousel">
                 <div
                   v-for="(img, idx) of imgs"
                   :key="idx"
                   v-show="idx === showImg"
+                  class="container"
                 >
                   <a href="#"><img :src="img.src" alt="" /></a>
                   <!-- <span>{{ idx + 1 }}</span> -->
@@ -105,35 +106,99 @@
                     @click="setShowImgTo(num - 1)"
                     v-for="num in imgs.length"
                     :key="num - 1"
-                  >
-                    {{ num }}
-                  </button>
+                  ></button>
                   <button class="next" @click="setShowImg(1)">▶</button>
                 </div>
               </div>
             </div>
             <!-- right -->
             <div class="newproducts-bot-item-right">
-              <template v-for="cargo of productslaptop" :key="cargo.id">
-                <!-- 6src -->
-                <div class="right-prod" :data-type="cargo.type">
-                  <div class="prod-img">
-                    <router-link to="/"
-                      ><img :src="cargo.url" alt="1"
-                    /></router-link>
+              <div
+                class="right-prod"
+                v-show="showprodright === 'Laptops'"
+                v-for="cargo of products6"
+                :key="cargo.id"
+                :data-type="cargo.type"
+              >
+                <div class="prod-img">
+                  <a href="javascript:;"><img :src="cargo.url" alt="1" /></a>
+                </div>
+                <div class="prod-info">
+                  <div class="info-p">
+                    <a href="" :title="cargo.name">{{ cargo.name }}</a>
                   </div>
-                  <div class="prod-info">
-                    <div class="info-p">
-                      <a href="" :title="cargo.name">{{ cargo.name }}</a>
-                    </div>
-                    <div class="info-price">
-                      <b>$</b>
-                      <p>{{ cargo.price }}</p>
-                    </div>
+                  <div class="info-price">
+                    <b>$</b>
+                    <p>{{ cargo.price }}</p>
                   </div>
                 </div>
-                <!-- 6pic end -->
-              </template>
+              </div>
+              <!-- right 2 smartphone-->
+              <div
+                class="right-prod"
+                v-show="showprodright === 'Smartphones'"
+                v-for="cargo of smartphone"
+                :key="cargo.id"
+                :data-type="cargo.type"
+              >
+                <div class="prod-img">
+                  <a href="javascript:;"><img :src="cargo.url" alt="1" /></a>
+                </div>
+                <div class="prod-info">
+                  <div class="info-p">
+                    <a href="" :title="cargo.name">{{ cargo.name }}</a>
+                  </div>
+                  <div class="info-price">
+                    <b>$</b>
+                    <p>{{ cargo.price }}</p>
+                  </div>
+                </div>
+              </div>
+              <!-- 2 -->
+              <!-- right 3 Tablet -->
+              <div
+                class="right-prod"
+                v-show="showprodright === 'Tablet'"
+                v-for="cargo of tablet"
+                :key="cargo.id"
+                :data-type="cargo.type"
+              >
+                <div class="prod-img">
+                  <a href="javascript:;"><img :src="cargo.url" alt="1" /></a>
+                </div>
+                <div class="prod-info">
+                  <div class="info-p">
+                    <a href="" :title="cargo.name">{{ cargo.name }}</a>
+                  </div>
+                  <div class="info-price">
+                    <b>$</b>
+                    <p>{{ cargo.price }}</p>
+                  </div>
+                </div>
+              </div>
+              <!-- 3 -->
+              <!-- right 3 Accessories -->
+              <div
+                class="right-prod"
+                v-show="showprodright === 'Accessories'"
+                v-for="cargo of Accessories"
+                :key="cargo.id"
+                :data-type="cargo.type"
+              >
+                <div class="prod-img">
+                  <a href="javascript:;"><img :src="cargo.url" alt="1" /></a>
+                </div>
+                <div class="prod-info">
+                  <div class="info-p">
+                    <a href="" :title="cargo.name">{{ cargo.name }}</a>
+                  </div>
+                  <div class="info-price">
+                    <b>$</b>
+                    <p>{{ cargo.price }}</p>
+                  </div>
+                </div>
+              </div>
+              <!-- 4 -->
             </div>
           </div>
         </div>
@@ -212,7 +277,7 @@ export default {
   },
   data() {
     return {
-      productslaptop: [
+      products6: [
         {
           id: 1,
           type: "laptop",
@@ -256,6 +321,156 @@ export default {
           url: "https://m.media-amazon.com/images/I/81Ivn5DIxhL._AC_UY327_QL65_.jpg",
         },
       ],
+      smartphone: [
+        {
+          id: "s1",
+          type: "smartphones",
+          name: "SAMSUNG Galaxy S22 Cell Phone, Factory Unlocked Android Smartphone, 128GB, 8K Camera & Video, Night Mode, Brightest Display Screen, 50MP Photo Resolution, Long Battery Life, US Version, Green",
+          info: "",
+          price: "21,000",
+          url: "https://m.media-amazon.com/images/I/71c5rhsUkxL._AC_SL1500_.jpg",
+        },
+        {
+          id: "s2",
+          type: "smartphones",
+          name: "Google Pixel 6-5G Android Phone - Unlocked Smartphone with Wide and Ultrawide Lens - 128GB - Stormy Black",
+          info: "",
+          price: "18,000",
+          url: "https://m.media-amazon.com/images/I/61oQtjPpM-L._AC_UY327_FMwebp_QL65_.jpg",
+        },
+        {
+          id: "s3",
+          type: "smartphones",
+          name: "SAMSUNG Galaxy S21 FE 5G Cell Phone, Factory Unlocked Android Smartphone, 128GB, 120Hz Display Screen, Pro Grade Camera, All Day Intelligent Battery, US Version, Olive",
+          info: "",
+          price: "21,000",
+          url: "https://m.media-amazon.com/images/I/61pP6pemX3L._AC_UY327_FMwebp_QL65_.jpg",
+        },
+        {
+          id: "s4",
+          type: "smartphones",
+          name: "SAMSUNG Galaxy S21 FE 5G Cell Phone, Factory Unlocked Android Smartphone, 128GB, 120Hz Display Screen, Pro Grade Camera, All Day Intelligent Battery, US Version, Lavender",
+          info: "",
+          price: "17,800",
+          url: "https://m.media-amazon.com/images/I/61UDrA6RtTL._AC_UY327_FMwebp_QL65_.jpg",
+        },
+        {
+          id: "s5",
+          type: "smartphones",
+          name: "Samsung Galaxy S21 5G, US Version, 128GB, Phantom Gray - Unlocked (Renewed)",
+          info: "",
+          price: "17,400",
+          url: "https://m.media-amazon.com/images/I/61jYjeuNUnL._AC_UY327_FMwebp_QL65_.jpg",
+        },
+        {
+          id: "s6",
+          type: "smartphones",
+          name: "Google Pixel 4a Smartphone, 128GB Storage & Unlocked Cellular - Just Black (Renewed)",
+          info: "",
+          price: "15,000",
+          url: "https://m.media-amazon.com/images/I/61MBRtrVz9L._AC_UY327_FMwebp_QL65_.jpg",
+        },
+      ],
+      tablet: [
+        {
+          id: "t1",
+          type: "tablet",
+          name: "SAMSUNG Galaxy Tab A8 10.5” 32GB Android Tablet w/ LCD Screen, Long Lasting Battery, Kids Content, Smart Switch, Expandable Memory,SM-X200NZSAXAR, Silver, Amazon Exclusive",
+          info: "",
+          price: "6,000",
+          url: "https://m.media-amazon.com/images/I/61fV4UeHeLL._AC_SL1200_.jpg",
+        },
+        {
+          id: "t2",
+          type: "tablet",
+          name: 'SAMSUNG Galaxy Tab A7 Lite 8.7" 32GB Android Tablet w/ Compact, Slim Design, Sturdy Metal Frame, Long Lasting Battery, Gray',
+          info: "",
+          price: "4,000",
+          url: "https://m.media-amazon.com/images/I/819hAP4xoGS._AC_SL1500_.jpg",
+        },
+        {
+          id: "t3",
+          type: "tablet",
+          name: "10 Inch Android Tablet pc, 32GB ROM 128GB Expand, Octa-Core Tablets, IPS HD Touch Screen,Google Certificated Wi-Fi Tablets, G+G, 8MP Camera, Long Battery Life-Black ( Including Tablet Leather Case)",
+          info: "",
+          price: "2,700",
+          url: "https://m.media-amazon.com/images/I/71kMcDJhqSL._AC_SL1491_.jpg",
+        },
+        {
+          id: "t4",
+          type: "tablet",
+          name: "Samsung Galaxy Tab S8+ Android Tablet, 12.4” Large AMOLED Screen, 128GB Storage, Wi-Fi 6E, Ultra Wide Camera, S Pen Included, Long Lasting Battery, Graphite",
+          info: "",
+          price: "24,600",
+          url: "https://m.media-amazon.com/images/I/81XE3+Sjc6L._AC_SL1500_.jpg",
+        },
+        {
+          id: "t5",
+          type: "tablet",
+          name: "Samsung Galaxy Tab A8 Android Tablet, 10.5” LCD Screen, 32GB Storage, Long-Lasting Battery, Kids Content, Smart Switch, Expandable Memory, Dark Gray",
+          info: "",
+          price: "5,900",
+          url: "https://m.media-amazon.com/images/I/61krikJxTmL._AC_SL1200_.jpg",
+        },
+        {
+          id: "t6",
+          type: "tablet",
+          name: "Microsoft Surface Pro 4 (Intel Core i5, 4GB RAM, 128GB) with Windows 10 Anniversary (Renewed)",
+          info: "",
+          price: "24,500",
+          url: "https://m.media-amazon.com/images/I/61+190WRzZL._AC_UY327_QL65_.jpg",
+        },
+      ],
+      Accessories: [
+        {
+          id: "a1",
+          type: "Accessory",
+          name: "USB-C to USB A Cable 3.1A Fast Charging [2-Pack 6.6ft], JSAUX USB Type C Charger Cord Compatible with Samsung Galaxy S10 S9 S8 S20 Plus A51 A12 A11, Note 10 9 8, PS5 Controller USB C Charger-Red",
+          info: "",
+          price: "270",
+          url: "https://m.media-amazon.com/images/I/81FgxrbJDWL._SL1500_.jpg",
+        },
+        {
+          id: "a2",
+          type: "Accessory",
+          name: "HyperX Cloud Alpha S - PC Gaming Headset, 7.1 Surround Sound, Adjustable Bass, Dual Chamber Drivers, Chat Mixer, Breathable Leatherette, Memory Foam, and Noise Cancelling Microphone - Blue",
+          info: "",
+          price: "2,670",
+          url: "https://m.media-amazon.com/images/I/61nezBJp73L._AC_SL1354_.jpg",
+        },
+        {
+          id: "a3",
+          type: "Accessory",
+          name: "PopSockets: PopGrip with Swappable Top for Phones and Tablets - Black",
+          info: "",
+          price: "300",
+          url: "https://m.media-amazon.com/images/I/71BYKFrlL+L._AC_SL1500_.jpg",
+        },
+        {
+          id: "a4",
+          type: "Accessory",
+          name: "Yootech Wireless Charger,10W Max Fast Wireless Charging Pad Compatible with iPhone 13/13 Pro/13 Mini/13 Pro Max/SE 2022/12/SE 2020/11/X/8,Samsung Galaxy S22/S21/S20/S10,AirPods Pro(No AC Adapter)",
+          info: "",
+          price: "420",
+          url: "https://m.media-amazon.com/images/I/61oIAKY9s1L._AC_SL1500_.jpg",
+        },
+        {
+          id: "a5",
+          type: "Accessory",
+          name: "TACOMEGE Transparent Clear Phone Ring Grips Holder Kickstand, Finger Ring Stand for Cell Phone Tablet Case Accessories(Round-Clear)",
+          info: "",
+          price: "140",
+          url: "https://m.media-amazon.com/images/I/61YI6ygBmUL._AC_UY327_QL65_.jpg",
+        },
+        {
+          id: "a6",
+          type: "Accessory",
+          name: "EDUPLINK Portable Bluetooth Speaker Waterproof IPX7 Wireless Speaker with 20W Louder Speakers Switch Between Bluetooth Pairing and Aux-in Mode by Phone Button Black",
+          info: "",
+          price: "1,200",
+          url: "https://m.media-amazon.com/images/I/71is4M24SJL._AC_SL1500_.jpg",
+        },
+      ],
       newproductnav: [
         {
           id: 1,
@@ -276,6 +491,7 @@ export default {
       ],
       current_type: 1,
       showprod: 0,
+      showprodright: "Laptops",
       //carousel
       transitionName: "right-in",
       showImg: 0,
@@ -300,8 +516,9 @@ export default {
     setInterval(this.setShowImg, this.autoPlayInterval);
   },
   methods: {
-    checkoutType(index) {
+    checkoutType(index, name) {
       this.current_type = index;
+      this.showprodright = name;
     },
     //carousel
     setShowImg(changeIdx = 1) {
