@@ -6,9 +6,9 @@
       <div class="copyright-bg">
         <div class="container">
           <div class="item">
-            <a href="">Conditions of Use</a>
-            <a href="">Privacy Notice</a>
-            <a href="">Interest-Based Ads</a>
+            <a href="javascript:;">Conditions of Use</a>
+            <a href="javascript:;">Privacy Notice</a>
+            <a href="javascript:;">Interest-Based Ads</a>
             <p>&copy;2022 kai.com Inc. All Rights Reserved.</p>
           </div>
         </div>

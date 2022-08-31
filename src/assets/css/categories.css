@@ -1,11 +1,21 @@
 /*  categorielaptops */
-
+@keyframes moveToTop {
+    0% {
+      transform: translatey(30px);
+      opacity: 0;
+    }
+    100% {
+      transform: translatey(0px);
+      opacity: 1;
+    }
+  }
 .producesall {
     max-width: 1200px;
     min-height: 600px;
     margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
+    animation: moveToTop 1s ease-in-out 30ms;
 }
 
 .producesall .prod-container {

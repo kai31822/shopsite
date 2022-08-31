@@ -4,13 +4,15 @@
     <template v-for="prod in pagelist" :key="prod.id">
       <div class="prod-container" :data-id="prod.id">
         <div class="prod-img">
-          <a href="javascript:;">
+          <router-link v-bind:to="'product/' + prod.id" :title="prod.name">
             <img :src="prod.url" alt="" />
-          </a>
+          </router-link>
         </div>
         <div class="prod-info">
           <div class="info-p">
-            <a href="" :title="prod.name">{{ prod.name }}</a>
+            <router-link v-bind:to="'product/' + prod.id" :title="prod.name">{{
+              prod.name
+            }}</router-link>
           </div>
           <div class="info-price">
             <b>$</b>

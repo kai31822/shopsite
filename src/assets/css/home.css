@@ -32,6 +32,7 @@ a {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+
 }
 
 .header2 {
@@ -120,11 +121,15 @@ a {
     padding: 0 15px;
     text-align: center;
 }
+.navigation .menu-info-bot .sign {
+    display: none;
+}
 .navigation .menu-info-bot li a {
     display: block;
     width: 90px;
     position: relative;
 }
+
 .navigation .menu-info-bot li a i {
     display: block;
 }
@@ -562,8 +567,15 @@ footer .copyright-bg .container .item a {
         margin: 0 auto;
         display: flex;
         justify-content: space-between;
-        overflow: hidden;
+        overflow: hidden;position: relative;
     }
+    .navigation .menu-info-bot li {
+      display: none;
+    }
+    .navigation .menu-info-bot .sign {
+        display: block;
+    }
+
     /* collection */
     .collection-allwrap {
         display: flex;

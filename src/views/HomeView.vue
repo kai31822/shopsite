@@ -7,6 +7,7 @@
     <router-view name="Smartphones" :cargo="cargo"></router-view>
     <router-view name="Tablets" :cargo="cargo"></router-view>
     <router-view name="Accessories" :cargo="cargo"></router-view>
+
     <FooterClass />
   </div>
 </template>

@@ -8,17 +8,17 @@
           <div class="collection-wrap">
             <div class="collection-item">
               <div class="collection-item-img">
-                <a href="#"
+                <router-link v-bind:to="'product/1'"
                   ><img
                     src="https://images.unsplash.com/photo-1589652717521-10c0d092dea9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjZ8fGxhcHRvcHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"
                     alt=""
-                /></a>
+                /></router-link>
               </div>
               <div class="collection-item-body">
                 <h3>Laptop<br />Collection</h3>
-                <a href=""
+                <router-link v-bind:to="'product/1'"
                   >SHOP NOW<i class="fa-solid fa-circle-arrow-right"></i
-                ></a>
+                ></router-link>
               </div>
             </div>
           </div>
@@ -26,17 +26,17 @@
           <div class="collection-wrap">
             <div class="collection-item">
               <div class="collection-item-img">
-                <a href="#"
+                <router-link v-bind:to="'product/s1'"
                   ><img
                     src="https://images.unsplash.com/photo-1583573636246-18cb2246697f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8c21hcnRwaG9uZXN8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60"
                     alt=""
-                /></a>
+                /></router-link>
               </div>
               <div class="collection-item-body">
                 <h3>Smartphones<br />Collection</h3>
-                <a href="#"
+                <router-link v-bind:to="'product/s1'"
                   >SHOP NOW<i class="fa-solid fa-circle-arrow-right"></i
-                ></a>
+                ></router-link>
               </div>
             </div>
           </div>
@@ -44,17 +44,17 @@
           <div class="collection-wrap">
             <div class="collection-item">
               <div class="collection-item-img">
-                <a href="#"
+                <router-link v-bind:to="'product/a1'"
                   ><img
                     src="https://images.unsplash.com/photo-1599108859517-0d6aed78ac87?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8YWNjZXNzb3JpZXMlMjBlbGV0aXJpY3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"
                     alt=""
-                /></a>
+                /></router-link>
               </div>
               <div class="collection-item-body">
                 <h3>Accessories<br />Collection</h3>
-                <a href=""
+                <router-link v-bind:to="'product/a1'"
                   >SHOP NOW<i class="fa-solid fa-circle-arrow-right"></i
-                ></a>
+                ></router-link>
               </div>
             </div>
           </div>
@@ -121,11 +121,19 @@
                 :data-type="cargo.type"
               >
                 <div class="prod-img">
-                  <a href="javascript:;"><img :src="cargo.url" alt="1" /></a>
+                  <router-link
+                    v-bind:to="'product/' + cargo.id"
+                    :title="cargo.name"
+                    ><img :src="cargo.url" alt="1"
+                  /></router-link>
                 </div>
                 <div class="prod-info">
                   <div class="info-p">
-                    <a href="" :title="cargo.name">{{ cargo.name }}</a>
+                    <router-link
+                      v-bind:to="'product/' + cargo.id"
+                      :title="cargo.name"
+                      >{{ cargo.name }}</router-link
+                    >
                   </div>
                   <div class="info-price">
                     <b>$</b>
@@ -142,11 +150,19 @@
                 :data-type="cargo.type"
               >
                 <div class="prod-img">
-                  <a href="javascript:;"><img :src="cargo.url" alt="1" /></a>
+                  <router-link
+                    v-bind:to="'product/' + cargo.id"
+                    :title="cargo.name"
+                    ><img :src="cargo.url" alt="1"
+                  /></router-link>
                 </div>
                 <div class="prod-info">
                   <div class="info-p">
-                    <a href="" :title="cargo.name">{{ cargo.name }}</a>
+                    <router-link
+                      v-bind:to="'product/' + cargo.id"
+                      :title="cargo.name"
+                      >{{ cargo.name }}</router-link
+                    >
                   </div>
                   <div class="info-price">
                     <b>$</b>
@@ -164,11 +180,19 @@
                 :data-type="cargo.type"
               >
                 <div class="prod-img">
-                  <a href="javascript:;"><img :src="cargo.url" alt="1" /></a>
+                  <router-link
+                    v-bind:to="'product/' + cargo.id"
+                    :title="cargo.name"
+                    ><img :src="cargo.url" alt="1"
+                  /></router-link>
                 </div>
                 <div class="prod-info">
                   <div class="info-p">
-                    <a href="" :title="cargo.name">{{ cargo.name }}</a>
+                    <router-link
+                      v-bind:to="'product/' + cargo.id"
+                      :title="cargo.name"
+                      >{{ cargo.name }}</router-link
+                    >
                   </div>
                   <div class="info-price">
                     <b>$</b>
@@ -186,11 +210,19 @@
                 :data-type="cargo.type"
               >
                 <div class="prod-img">
-                  <a href="javascript:;"><img :src="cargo.url" alt="1" /></a>
+                  <router-link
+                    v-bind:to="'product/' + cargo.id"
+                    :title="cargo.name"
+                    ><img :src="cargo.url" alt="1"
+                  /></router-link>
                 </div>
                 <div class="prod-info">
                   <div class="info-p">
-                    <a href="" :title="cargo.name">{{ cargo.name }}</a>
+                    <router-link
+                      v-bind:to="'product/' + cargo.id"
+                      :title="cargo.name"
+                      >{{ cargo.name }}</router-link
+                    >
                   </div>
                   <div class="info-price">
                     <b>$</b>
